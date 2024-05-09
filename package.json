@@ -2,7 +2,8 @@
   "scripts": {
     "start": "npm run compile",
     "compile": "npm run encrypt && node_modules/.bin/webpack",
-    "encrypt": "node node_modules/.bin/ts-node src/encrypt.ts",
+    "encrypt": "OPERATION=encrypt node node_modules/.bin/ts-node src/encryption-cli.ts",
+    "decrypt": "OPERATION=decrypt node_modules/.bin/ts-node src/encryption-cli.ts",
     "test": "node_modules/.bin/mocha -r ts-node/register **/*.test.ts",
     "format": "node_modules/.bin/prettier --write .",
     "lint": "node_modules/.bin/eslint ."

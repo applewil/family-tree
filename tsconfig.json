@@ -1,9 +1,8 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "nodenext",
-    "strict": true,
-    "inlineSourceMap": true
+    "target": "ESNext",
+    "module": "NodeNext",
+    "strict": true
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*.ts"]
 }

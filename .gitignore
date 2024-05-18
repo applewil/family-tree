@@ -129,3 +129,4 @@ out
 .pnp.*
 
 src/data.json
+src/demo-data.json

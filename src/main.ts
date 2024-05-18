@@ -1,5 +1,5 @@
-import { decryptData } from './encryption';
-import { Person, PersonRaw, getChildren, getDepth, getLevel, getNode, getParents, importTree } from './tree';
+import {decryptData} from './encryption';
+import {Person, PersonRaw, getChildren, getDepth, getLevel, getNode, getParents, importTree} from './tree';
 
 function personToRow(person: Person, level: number, index: number): string {
   const fatherOrMother = level === 0 ? '' : index % 2 === 0 ? 'father' : 'mother';
@@ -42,9 +42,16 @@ function highlight(root: Person, subjectId: string): void {
   highlightIds.forEach(id => document.getElementById(id)?.classList.add('highlighted'));
 }
 
+async function fetchEncryptedData(): Promise<string> {
+  const urlSearchParams = new URLSearchParams(window.location.search);
+  const isDemo = urlSearchParams.get('demo') === 'true';
+  const filename = isDemo ? 'demo-encrypted-data.txt' : 'encrypted-data.txt';
+  return fetch(filename).then(response => response.text());
+}
+
 export async function load() {
-  const encryptedData = await (await fetch('encrypted-data.txt')).text();
-  const passwordBox = document.getElementById('password') as HTMLInputElement
+  const encryptedData = await fetchEncryptedData();
+  const passwordBox = document.getElementById('password') as HTMLInputElement;
   const data = await decrypt(encryptedData, passwordBox.value);
   if (data) {
     const peopleRaw: PersonRaw[] = JSON.parse(data);

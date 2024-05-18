@@ -1,27 +1,27 @@
 {
   "scripts": {
     "start": "npm run compile",
-    "compile": "npm run encrypt && node_modules/.bin/webpack",
-    "encrypt": "OPERATION=encrypt node node_modules/.bin/ts-node src/encryption-cli.ts",
-    "decrypt": "OPERATION=decrypt node_modules/.bin/ts-node src/encryption-cli.ts",
-    "test": "node_modules/.bin/mocha -r ts-node/register **/*.test.ts",
-    "format": "node_modules/.bin/prettier --write .",
-    "lint": "node_modules/.bin/eslint ."
+    "compile": "npm run encrypt && webpack",
+    "encrypt": "OPERATION=encrypt tsx src/encryption-cli.ts",
+    "decrypt": "OPERATION=decrypt tsx src/encryption-cli.ts",
+    "test": "mocha --import=tsx **/*.test.ts",
+    "format": "prettier --write .",
+    "lint": "eslint ."
   },
   "devDependencies": {
-    "@types/node": "20.11.24",
+    "@types/chai": "4.3.16",
+    "@types/mocha": "10.0.6",
+    "@types/node": "20.12.12",
     "@typescript-eslint/eslint-plugin": "7.1.0",
     "@typescript-eslint/parser": "7.1.0",
+    "chai": "5.1.1",
     "eslint": "8.57.0",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-prettier": "5.1.3",
-    "prettier": "3.2.5",
-    "ts-node": "10.9.2",
-    "ts-loader": "9.5.1",
-    "webpack-cli": "5.1.4",
     "mocha": "10.4.0",
-    "@types/mocha": "10.0.6",
-    "@types/chai": "4.3.14",
-    "chai": "4.4.1"
+    "prettier": "3.2.5",
+    "ts-loader": "9.5.1",
+    "tsx": "4.10.5",
+    "webpack-cli": "5.1.4"
   }
 }

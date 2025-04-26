@@ -17,11 +17,13 @@ Password is demo
 ### Decrypt Data File for Modifying
 
 ```sh
+export PASSWORD=<password>
 npm run decrypt
 ```
 
 ### Encrypt Data File and Compile
 
 ```sh
+export PASSWORD=<password>
 npm run compile
 ```

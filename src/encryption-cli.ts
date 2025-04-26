@@ -1,4 +1,4 @@
-import {existsSync, readFileSync, writeFileSync} from 'fs';
+import {readFileSync, writeFileSync} from 'fs';
 import {decryptData, encryptData} from './encryption';
 
 async function main() {
@@ -11,21 +11,13 @@ async function main() {
     const demoEncryptedData = await encryptData(demoData, 'demo');
     writeFileSync('docs/demo-encrypted-data.txt', demoEncryptedData);
   } else if (process.env.OPERATION === 'decrypt') {
-    if (existsSync('docs/encrypted-data.txt')) {
-      console.log('Cowardly refusing to overwrite docs/encrypted-data.txt');
-    } else {
-      const encryptedData = readFileSync('docs/encrypted-data.txt', 'utf8');
-      const data = await decryptData(encryptedData, process.env.PASSWORD!);
-      writeFileSync('src/data.json', data);
-    }
+    const encryptedData = readFileSync('docs/encrypted-data.txt', 'utf8');
+    const data = await decryptData(encryptedData, process.env.PASSWORD!);
+    writeFileSync('src/data.json', data);
 
-    if (existsSync('docs/demo-encrypted-data.txt')) {
-      console.log('Cowardly refusing to overwrite docs/demo-encrypted-data.txt');
-    } else {
-      const demoEncryptedData = readFileSync('docs/demo-encrypted-data.txt', 'utf8');
-      const demoData = await decryptData(demoEncryptedData, 'demo');
-      writeFileSync('src/demo-data.json', demoData);
-    }
+    const demoEncryptedData = readFileSync('docs/demo-encrypted-data.txt', 'utf8');
+    const demoData = await decryptData(demoEncryptedData, 'demo');
+    writeFileSync('src/demo-data.json', demoData);
   }
 }
 
